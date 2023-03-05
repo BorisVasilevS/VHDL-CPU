@@ -1,0 +1,7 @@
+
+State Machine - |core|control_unit:control_unit_c|state
+Name state.Store state.Exec state.Decode state.InstrFetch 
+state.InstrFetch 0 0 0 0 
+state.Decode 0 0 1 1 
+state.Exec 0 1 0 1 
+state.Store 1 0 0 1 
