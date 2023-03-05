@@ -1,0 +1,39 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+entity control_unit is
+port
+(
+	--reg file ----------
+	clk, reset: in std_logic;
+	--data_r1, data_r2: out std_logic_vector(7 downto 0);
+	addr_r1, addr_r2: out std_logic_vector(4 downto 0);
+	--RX, RY, RZ : out std_logic_vector(15 downto 0);
+	--data_w: in std_logic_vector(7 downto 0);
+	addr_w: out std_logic_vector(4 downto 0);
+	wr: out std_logic;
+	
+	-- programm memory ---
+	pm_addr: out std_logic_vector(11 downto 0);
+	pm_data: in std_logic_vector(15 downto 0);
+	
+	--programm counter ----
+	--clk, reset: in std_logic;
+	
+	mode12k: in std_logic_vector(1 downto 0);
+	k: out std_logic_vector(11 downto 0);
+	
+	pm_addr: in std_logic_vector(11 downto 0);
+	pm_data: out std_logic_vector(15 downto 0);
+	
+	out_IR: in std_logic_vector(15 downto 0);
+	
+	--alu-----------
+	op1, op2: out std_logic_vector(7 downto 0);
+	opcode: out std_logic_vector(15 downto 0);
+	res: in std_logic_vector(15 downto 0);
+	SREG: in  std_logic_vector(7 downto 0)
+	
+);
