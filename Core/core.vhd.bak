@@ -1,0 +1,89 @@
+library ieee;
+use ieee.std_logic_1164.ALL;
+use ieee.numeric_std.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+entity core is
+port(
+	clk		:	in	std_logic;
+	reset_n	:	in	std_logic	
+);
+end entity;
+
+architecture RTL of core is
+
+------------ALU------------
+component ALU 
+port(
+	clk, reset	:	in		std_logic							;
+	op1, op2 	:	in		std_logic_vector(7 downto 0)	;
+	op_code		:	in		std_logic_vector(15 downto 0)	;
+	res			:	out	std_logic_vector(15 downto 0)	;
+	SREG			:	out	std_logic_vector(7 downto 0)	
+);
+end component ALU;
+
+-------Control Unit---------
+component control_unit
+port
+(
+	clk, reset_n		: in std_logic;
+	opcode_i 			: in std_logic_vector(15 downto 0);
+	opcode_o 			: out std_logic_vector(15 downto 0);
+	mode12k				: out std_logic_vector(1 downto 0);
+	k						: out std_logic_vector(11 downto 0);
+	addr_r1, addr_r2	: out std_logic_vector(4 downto 0);
+	addr_w				: out std_logic_vector(4 downto 0);
+	op_k					: out std_logic_vector(7 downto 0);
+	clk_if, clk_dc, clk_ex, clk_st: out std_logic;
+	wr						: out std_logic
+);
+end component control_unit;
+
+-------Control Fetch-------
+component ControlFetch
+port(
+	clk			:	in 	std_logic;
+	reset			:	in 	std_logic;
+	mode12K		:	in		std_logic_vector(1 downto 0);
+	
+	k				:	in 	std_logic_vector(11 downto 0);
+	
+	pm_addr		:	out 	std_logic_vector(11 downto 0);
+	pm_data		:	in  	std_logic_vector(15 downto 0);
+	
+	out_IR		:	out 	std_logic_vector(15 downto 0)
+);
+end component ControlFetch;
+
+-------Program Memory------
+component ProgMem
+port(
+	pm_addr	:	in 	std_logic_vector(11 downto 0);
+	pm_data	:	out	std_logic_vector(15 downto 0)
+);
+end component ProgMem;
+
+---------Register File-----
+component RegisterFile
+port(
+	clk					:	in		std_logic							;
+	reset					:	in		std_logic							;
+	wr						:	in		std_logic;	
+	addr_r1				:	in		std_logic_vector(4 downto 0)	; 
+	addr_r2				:	in		std_logic_vector(4 downto 0)	;
+	addr_w				:	in		std_logic_vector(4 downto 0)	; 
+	data_w				:	in		std_logic_vector(7 downto 0)	;
+	data_r1				:	out	std_logic_vector(7 downto 0)	;
+	data_r2				:	out	std_logic_vector(7 downto 0)	;
+	RX, RY, RZ			:	out	std_logic_vector(15 downto 0)
+);
+end component RegisterFile;
+
+
+begin
+
+
+
+end architecture;

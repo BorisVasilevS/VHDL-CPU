@@ -1,0 +1,15 @@
+vendor_name = ModelSim
+source_file = 1, D:/Users/lolfa/Desktop/Study/Quartus/Projects/CPU/Core/RegisterFile.vhd
+source_file = 1, D:/Users/lolfa/Desktop/Study/Quartus/Projects/CPU/Core/ProgMem.vhd
+source_file = 1, D:/Users/lolfa/Desktop/Study/Quartus/Projects/CPU/Core/ControlFetch.vhd
+source_file = 1, D:/Users/lolfa/Desktop/Study/Quartus/Projects/CPU/Core/control_unit.vhd
+source_file = 1, D:/Users/lolfa/Desktop/Study/Quartus/Projects/CPU/Core/ALU.vhd
+source_file = 1, D:/Users/lolfa/Desktop/Study/Quartus/Projects/CPU/Core/core.vhd
+source_file = 1, D:/Users/lolfa/Desktop/Study/Quartus/Projects/CPU/Core/db/core.cbx.xml
+source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/prmtvs_b.vhd
+source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/prmtvs_p.vhd
+source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/timing_b.vhd
+source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/timing_p.vhd
+design_name = core
+instance = comp, \clk~input\, clk~input, core, 1
+instance = comp, \reset_n~input\, reset_n~input, core, 1
