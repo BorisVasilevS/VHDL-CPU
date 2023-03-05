@@ -1,0 +1,28 @@
+library ieee;
+use ieee.std_logic_1164.ALL;
+use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
+
+entity ControlFetch is
+port(
+	clk			:	in 	std_logic;
+	reset			:	in 	std_logic;
+	mode12K		:	in		std_logic_vector(1 downto 0);
+	loadPC		:	in 	std_logic;
+	loadIR		:	in 	std_logic;
+	
+	k				:	in 	std_logic_vector(11 downto 0);
+	
+	pm_addr		:	out 	std_logic_vector(7 downto 0);
+	pm_data		:	in  	std_logic_vector(15 downto 0);
+	
+	out_IR		:	out 	std_logic_vector(15 downto 0)
+);
+end entity;
+
+architecture RTL of ControlFetch is
+
+begin
+
+
+end architecture;
