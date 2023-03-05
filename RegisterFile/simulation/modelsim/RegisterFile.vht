@@ -1,0 +1,123 @@
+-- Copyright (C) 1991-2013 Altera Corporation
+-- Your use of Altera Corporation's design tools, logic functions 
+-- and other software and tools, and its AMPP partner logic 
+-- functions, and any output files from any of the foregoing 
+-- (including device programming or simulation files), and any 
+-- associated documentation or information are expressly subject 
+-- to the terms and conditions of the Altera Program License 
+-- Subscription Agreement, Altera MegaCore Function License 
+-- Agreement, or other applicable license agreement, including, 
+-- without limitation, that your use is for the sole purpose of 
+-- programming logic devices manufactured by Altera and sold by 
+-- Altera or its authorized distributors.  Please refer to the 
+-- applicable agreement for further details.
+
+-- ***************************************************************************
+-- This file contains a Vhdl test bench template that is freely editable to   
+-- suit user's needs .Comments are provided in each section to help the user  
+-- fill out necessary details.                                                
+-- ***************************************************************************
+-- Generated on "10/27/2022 02:11:30"
+                                                            
+-- Vhdl Test Bench template for design  :  RegisterFile
+-- 
+-- Simulation tool : ModelSim-Altera (VHDL)
+-- 
+
+library ieee;
+use ieee.numeric_std.all;
+use ieee.std_logic_1164.ALL;
+--use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;                           
+
+ENTITY RegisterFile_vhd_tst IS
+END RegisterFile_vhd_tst;
+ARCHITECTURE RegisterFile_arch OF RegisterFile_vhd_tst IS
+-- constants                                                 
+-- signals                                                   
+SIGNAL addr_r1 : STD_LOGIC_VECTOR(4 DOWNTO 0);
+SIGNAL addr_r2 : STD_LOGIC_VECTOR(4 DOWNTO 0);
+SIGNAL addr_w : STD_LOGIC_VECTOR(4 DOWNTO 0);
+SIGNAL clk : STD_LOGIC;
+SIGNAL data_r1 : STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL data_r2 : STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL data_w : STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL reset : STD_LOGIC;
+SIGNAL RX : STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL RY : STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL RZ : STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL wr : STD_LOGIC;
+COMPONENT RegisterFile
+	PORT (
+	addr_r1 : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+	addr_r2 : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+	addr_w : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+	clk : IN STD_LOGIC;
+	data_r1 : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+	data_r2 : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+	data_w : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+	reset : IN STD_LOGIC;
+	RX : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+	RY : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+	RZ : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+	wr : IN STD_LOGIC
+	);
+END COMPONENT;
+BEGIN
+	i1 : RegisterFile
+	PORT MAP (
+-- list connections between master ports and signals
+	addr_r1 => addr_r1,
+	addr_r2 => addr_r2,
+	addr_w => addr_w,
+	clk => clk,
+	data_r1 => data_r1,
+	data_r2 => data_r2,
+	data_w => data_w,
+	reset => reset,
+	RX => RX,
+	RY => RY,
+	RZ => RZ,
+	wr => wr
+	);
+init : PROCESS                                               
+-- variable declarations                                     
+BEGIN                                                        
+        -- code that executes only once                      
+WAIT;                                                       
+END PROCESS init;                                           
+always : PROCESS                                              
+-- optional sensitivity list                                  
+-- (        )                                                 
+-- variable declarations                                      
+BEGIN                                                         
+        -- code executes for every event on sensitivity list  
+	addr_r1 <= B"00000";
+	addr_r2 <= B"00001";
+	wait for 20 ns;
+	reset <= '0';
+	wr <= '0';
+	for i in 0 to 31 loop
+		addr_w <= std_logic_vector(to_unsigned(i,5));
+		data_w <= std_logic_vector(to_unsigned(-i,8));
+		wait for 20 ns;
+	end loop;
+	
+	for i in 0 to 31 loop
+		wr <= '1';
+		addr_w <= std_logic_vector(to_unsigned(i,5));
+		data_w <= std_logic_vector(to_unsigned(-i,8));
+		wait for 20 ns;
+	end loop;
+	wr <= '0';
+	for i in 0 to 31 loop
+		wr <= '1';
+		addr_w <= std_logic_vector(to_unsigned(i,5));
+		data_w <= std_logic_vector(to_unsigned(-i,8));
+		wait for 20 ns;
+	end loop;
+	
+
+		  
+END PROCESS always;                                          
+END RegisterFile_arch;
